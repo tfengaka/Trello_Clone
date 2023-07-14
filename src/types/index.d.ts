@@ -1,1 +1,5 @@
-export type SystemMode = 'light' | 'dark' | 'system';
+interface ThemeMode {
+  label: string;
+  value: 'light' | 'dark' | 'system';
+  icon: string;
+}

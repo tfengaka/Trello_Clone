@@ -6,16 +6,28 @@ const theme = extendTheme({
     light: {
       palette: {
         primary: {
-          main: '#002248',
-          contrastText: '#fff',
+          main: '#172b4d',
+        },
+        background: {
+          default: '#fff',
+          paper: '#f1f2f4',
+        },
+        text: {
+          primary: '#172b4d',
         },
       },
     },
     dark: {
       palette: {
         primary: {
-          main: '#0078ff',
-          contrastText: '#121212',
+          main: '#1d6ddc',
+        },
+        background: {
+          default: '#1a1b23',
+          paper: '#1d2125',
+        },
+        text: {
+          primary: '#b6c2cf',
         },
       },
     },
@@ -24,10 +36,10 @@ const theme = extendTheme({
     MuiSelect: {
       styleOverrides: {
         standard: ({ theme }) => ({
-          backgroundColor: theme.palette.primary.contrastText,
+          color: theme.palette.primary.contrastText,
         }),
         icon: ({ theme }) => ({
-          color: theme.palette.primary.main,
+          color: theme.palette.primary.contrastText,
           transition: 'all 0.3s ease',
         }),
       },
