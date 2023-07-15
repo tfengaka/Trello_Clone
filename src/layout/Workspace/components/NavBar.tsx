@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { alpha, styled } from '@mui/material/styles';
 
-import DarkModeButton from './DarkModeButton';
+import DarkModeButton from '../../../components/DarkModeButton';
 
 import { SIZE } from '~/utils/constants';
 import { Avatar } from '@mui/material';
@@ -13,7 +13,7 @@ const AppBarStyled = styled(AppBar)(({ theme }) => ({
   height: SIZE.NavBarH,
   boxShadow: 'none',
   borderBottom: `1px solid ${alpha('#fff', 0.15)}`,
-  backgroundColor: theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.background.paper,
+  backgroundColor: theme.palette.mode === 'light' ? '#172b4d' : theme.palette.background.paper,
 }));
 
 function NavBar() {

@@ -3,6 +3,7 @@ import { Fragment, useState } from 'react';
 
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ContrastIcon from '@mui/icons-material/Contrast';
+import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -62,7 +63,13 @@ function DarkModeButton() {
             >
               <Stack direction="row" alignItems="center" spacing={1}>
                 <Radio checked={mode === item.value} value={item.value} size="small" />
-                <img src={item.icon} alt={item.value} style={{ borderRadius: '8px', objectFit: 'cover' }} />
+                <Box sx={{ width: '64px', height: '48px' }}>
+                  <img
+                    src={item.icon}
+                    alt={item.value}
+                    style={{ width: '100%', height: '100%', borderRadius: '8px', objectFit: 'cover' }}
+                  />
+                </Box>
                 <Typography fontSize={14} textAlign="center" textTransform="initial" fontWeight={500}>
                   {item.label}
                 </Typography>
