@@ -1,27 +1,34 @@
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 
-import BoardColumns from './components/BoardColumns';
+import BoardContent from './components/BoardContent';
 import BoardHeader from './components/BoardHeader';
-
-import { SIZE } from '~/utils/constants';
 
 function Board() {
   return (
-    <Box
+    <Stack
+      width="100%"
+      height="100%"
       sx={{
-        flex: 1,
+        color: '#fff',
+        backgroundImage: `url(${'/background.svg'})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundSize: 'contain',
       }}
     >
       <BoardHeader />
       <Box
         sx={{
+          flexGrow: 1,
           width: '100%',
-          height: `calc(100vh - ${SIZE.NavBarH} - ${SIZE.BoardHeaderH})`,
+          mt: '12px',
+          position: 'relative',
         }}
       >
-        <BoardColumns />
+        <BoardContent />
       </Box>
-    </Box>
+    </Stack>
   );
 }
 

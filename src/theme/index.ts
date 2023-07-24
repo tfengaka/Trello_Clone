@@ -5,43 +5,103 @@ const theme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
-        primary: {
-          main: '#0c66e4',
+        text: {
+          secondary: '#172B4D',
         },
         background: {
           default: '#fff',
-          paper: '#f1f2f4',
-        },
-        text: {
-          primary: '#172b4d',
+          paper: '#ebecf0',
         },
       },
     },
     dark: {
       palette: {
-        primary: {
-          main: '#2982ff',
+        text: {
+          secondary: '#B6C2CF',
         },
         background: {
-          default: '#1a1b23',
-          paper: '#1d2125',
-        },
-        text: {
-          primary: '#b6c2cf',
+          default: '#1D2125',
+          paper: '#282E33',
         },
       },
     },
   },
   components: {
-    MuiSelect: {
+    MuiButton: {
       styleOverrides: {
-        standard: ({ theme }) => ({
-          color: theme.palette.primary.contrastText,
+        root: () => ({
+          textTransform: 'initial',
+          '&:hover': {
+            backgroundColor: 'rgba(255, 255, 255, 0.15)',
+          },
         }),
-        icon: ({ theme }) => ({
-          color: theme.palette.primary.contrastText,
-          transition: 'all 0.3s ease',
+        endIcon: {
+          margin: 0,
+          paddingBottom: '3px',
+        },
+        contained: {
+          boxShadow: 'none',
+          '&:hover': {
+            boxShadow: 'none',
+          },
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          padding: '4px',
+          '&:hover': {
+            backgroundColor: theme.palette.mode === 'light' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.1)',
+          },
         }),
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          outline: 'none',
+          fontWeight: 400,
+          '&.MuiOutlinedInput-notchedOutline': {
+            border: '2px solid rgba(255, 255, 255, 0.25)',
+          },
+          '&.MuiOutlinedInput-input': {
+            color: '#fff',
+          },
+        },
+      },
+    },
+    MuiBadge: {
+      styleOverrides: {
+        badge: {
+          color: '#fff',
+          backgroundColor: '#f44336',
+        },
+      },
+    },
+    MuiAvatarGroup: {
+      styleOverrides: {
+        root: {
+          gap: '4px',
+        },
+        avatar: {
+          fontSize: 16,
+          fontWeight: 500,
+          background: '#ebecf0',
+          color: '#172B4D',
+          border: '1px solid transparent !important',
+          width: '32px',
+          height: '32px',
+        },
+      },
+    },
+    MuiAvatar: {
+      styleOverrides: {
+        img: {
+          width: '100%',
+          height: '100%',
+          borderRadius: '50%',
+        },
       },
     },
   },

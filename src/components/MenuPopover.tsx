@@ -5,30 +5,36 @@ import React from 'react';
 interface Props {
   open: boolean;
   anchorEl: any;
+  position: 'left' | 'right' | 'center';
   children: React.ReactNode;
   sx?: SxProps;
   onClose: () => void;
 }
 
 const PopoverStyled = styled(Popover)(({ theme }) => ({
+  marginTop: '12px',
   '& .MuiPopover-paper': {
-    minWidth: '250px',
+    backgroundImage: 'none',
+    minWidth: '232px',
+    maxHeight: '849px',
     backgroundColor: theme.palette.background.paper,
-    mr: 5,
+    boxShadow: theme.shadows[5],
+    borderRadius: theme.spacing(0.5),
   },
 }));
 
-function MenuPopover({ open, sx, children, ...other }: Props) {
+function MenuPopover({ open, sx, position, children, ...other }: Props) {
   return (
     <PopoverStyled
       open={open}
+      elevation={0}
       anchorOrigin={{
         vertical: 'bottom',
-        horizontal: 'right',
+        horizontal: position,
       }}
       transformOrigin={{
         vertical: 'top',
-        horizontal: 'right',
+        horizontal: position,
       }}
       sx={sx}
       {...other}

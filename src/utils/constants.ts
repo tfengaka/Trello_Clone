@@ -1,21 +1,16 @@
-export const SIZE = {
-  NavBarH: '48px',
-  BoardHeaderH: '58px',
-};
-
 export const THEMEMODES: ThemeMode[] = [
   {
-    label: 'Light Mode',
+    label: 'Light',
     value: 'light',
     icon: '/light-mode.svg',
   },
   {
-    label: 'Dark Mode',
+    label: 'Dark',
     value: 'dark',
     icon: '/dark-mode.svg',
   },
   {
-    label: 'System Preferences',
+    label: 'Automatic',
     value: 'system',
     icon: '/system-mode.svg',
   },
