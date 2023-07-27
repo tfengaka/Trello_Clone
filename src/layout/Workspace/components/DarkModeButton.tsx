@@ -15,15 +15,15 @@ function DarkModeButton() {
   const { mode, setMode } = useColorScheme();
 
   return (
-    <Box
-      sx={{
-        filter: (theme) =>
-          theme.palette.mode === 'dark'
-            ? 'brightness(0) saturate(100%) invert(66%) sepia(25%) saturate(225%) hue-rotate(170deg) brightness(101%) contrast(85%)'
-            : 'unset',
-      }}
-    >
-      <Tooltip title="Theme">
+    <Tooltip title="Theme">
+      <Box
+        sx={{
+          filter: (theme) =>
+            theme.palette.mode === 'dark'
+              ? 'brightness(0) saturate(100%) invert(66%) sepia(25%) saturate(225%) hue-rotate(170deg) brightness(101%) contrast(85%)'
+              : 'unset',
+        }}
+      >
         <IconButtonMenu
           icon={<ContrastIcon fontSize="medium" />}
           subheaderTitle="Theme"
@@ -73,8 +73,8 @@ function DarkModeButton() {
             </ListItemButton>
           ))}
         </IconButtonMenu>
-      </Tooltip>
-    </Box>
+      </Box>
+    </Tooltip>
   );
 }
 

@@ -85,7 +85,7 @@ const theme = extendTheme({
           gap: '4px',
         },
         avatar: {
-          fontSize: 16,
+          fontSize: 14,
           fontWeight: 500,
           background: '#ebecf0',
           color: '#172B4D',

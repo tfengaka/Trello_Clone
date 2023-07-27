@@ -47,6 +47,11 @@ function BoardVisible() {
         </SvgIcon>
       }
       subheaderTitle="Change visible"
+      menuSx={{
+        '& .MuiPopover-paper': {
+          width: '384px',
+        },
+      }}
     >
       {Options.map((option) => (
         <ListItemButton

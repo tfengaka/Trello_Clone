@@ -1,8 +1,6 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-
-import BoardContent from './components/BoardContent';
-import BoardHeader from './components/BoardHeader';
+import { BoardContent, BoardHeader } from './components/Boards/';
 
 function Board() {
   return (
