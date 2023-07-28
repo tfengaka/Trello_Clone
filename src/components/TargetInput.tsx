@@ -1,5 +1,6 @@
-import { OutlinedInput, SxProps, styled } from '@mui/material';
+import { SxProps } from '@mui/material';
 import { useRef } from 'react';
+import { TargetInputStyled } from '~/theme/styled';
 
 interface Props {
   // value: string;
@@ -7,25 +8,6 @@ interface Props {
   sx?: SxProps;
   onChange: (value: string) => void;
 }
-
-const TargetInputStyled = styled(OutlinedInput)(({ theme }) => ({
-  '& .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'transparent',
-    cursor: 'pointer',
-  },
-  '& .MuiOutlinedInput-input': {
-    color: theme.palette.text.secondary,
-    padding: '4px 8px',
-    cursor: 'pointer',
-  },
-  '&:hover .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'transparent',
-  },
-  '&.Mui-focused:hover > .MuiOutlinedInput-notchedOutline': {
-    borderColor: '#388bff',
-    transition: theme.transitions.create(['border-color', 'background-color']),
-  },
-}));
 
 function TargetInput({ defaultValue, sx, onChange }: Props) {
   const inputRef = useRef<HTMLInputElement>();

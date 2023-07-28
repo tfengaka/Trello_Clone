@@ -1,6 +1,6 @@
-import Popover from '@mui/material/Popover';
-import { SxProps, styled } from '@mui/material/styles';
+import { SxProps } from '@mui/material/styles';
 import React from 'react';
+import { PopoverStyled } from '~/theme/styled';
 
 interface Props {
   open: boolean;
@@ -10,18 +10,6 @@ interface Props {
   sx?: SxProps;
   onClose: () => void;
 }
-
-const PopoverStyled = styled(Popover)(({ theme }) => ({
-  marginTop: '12px',
-  '& .MuiPopover-paper': {
-    backgroundImage: 'none',
-    minWidth: '232px',
-    maxHeight: '849px',
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    borderRadius: theme.spacing(0.5),
-  },
-}));
 
 function MenuPopover({ open, sx, position, children, ...other }: Props) {
   return (

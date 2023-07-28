@@ -17,15 +17,15 @@ function Badges() {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          gap: '2px',
+          gap: '4px',
           backgroundColor: '#1f845a',
           color: '#fff',
           borderRadius: '4px',
-          padding: '2px 4px',
+          padding: '2px 6px',
         }}
       >
-        <AccessTimeOutlinedIcon sx={{ width: '16px', height: '16px' }} />
-        <Typography fontSize={12} fontWeight={500} noWrap>
+        <AccessTimeOutlinedIcon sx={{ width: '14px', height: '14px' }} />
+        <Typography fontSize={12} fontWeight={400} lineHeight="20px" noWrap>
           Jul 28
         </Typography>
       </Box>

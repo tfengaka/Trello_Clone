@@ -1,46 +1,20 @@
-import { Button, styled } from '@mui/material';
-import Box from '@mui/material/Box';
-import Column from '../Columns';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import Button from '@mui/material/Button';
+import Column from '../Columns';
+import { BoardContentWrapper } from '~/theme/styled';
+import { useMemo } from 'react';
+import { mapOrderList } from '~/utils/formatter';
 
-const BoardContentWrapper = styled(Box)(() => ({
-  position: 'absolute',
-  inset: 0,
-  mb: '8px',
-  ml: '12px',
-  paddingBottom: '8px',
-  overflowX: 'auto',
-  overflowY: 'hidden',
-  userSelect: 'none',
-  whiteSpace: 'nowrap',
-  '&::-webkit-scrollbar': {
-    width: '12px',
-    height: '12px',
-  },
-  '&::-webkit-scrollbar-track': {
-    background: '#00000033',
-    borderRadius: '8px',
-  },
-  '&::-webkit-scrollbar-thumb': {
-    background: '#ffffffb2',
-    borderRadius: '8px',
-  },
-  '&::-webkit-scrollbar-button': {
-    display: 'block',
-    height: '4px',
-    width: '4px',
-  },
-}));
+interface Props {
+  data: BoardContent;
+}
 
-function BoardContent() {
+function BoardContent({ data }: Props) {
+  const listOrdered = useMemo(() => mapOrderList(data.listData, data.listOrderIds, '_id'), [data]);
+
   return (
     <BoardContentWrapper>
-      {Array(3)
-        .fill(0)
-        .map((_, i) => (
-          <Column key={i} />
-        ))}
-
+      {listOrdered.length && listOrdered.map((list) => <Column key={list._id} data={list} />)}
       <Button
         size="small"
         startIcon={<AddRoundedIcon fontSize="medium" />}

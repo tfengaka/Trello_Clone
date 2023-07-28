@@ -1,11 +1,8 @@
-import { alpha, styled } from '@mui/material/styles';
-import { Link as RouterLink } from 'react-router-dom';
-
 import AppsRoundedIcon from '@mui/icons-material/AppsRounded';
-import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
+import { Link as RouterLink } from 'react-router-dom';
 
 import Account from './Account';
 import CreateBoard from './CreateBoard';
@@ -17,16 +14,7 @@ import StarredBoard from './StarredBoard';
 import Templates from './Templates';
 import WorkspaceSwitch from './WorkspaceSwitch';
 
-const AppBarStyled = styled(AppBar)(({ theme }) => ({
-  backgroundImage: 'none',
-  width: '100%',
-  height: 'auto',
-  boxShadow: 'none',
-  borderBottom: `1px solid ${alpha('#fff', 0.2)}`,
-  backgroundColor: theme.palette.mode === 'light' ? '#072754' : theme.palette.background.default,
-  transition: 'background 0.3s ease',
-  padding: '4px 8px',
-}));
+import { AppBarStyled } from '~/theme/styled';
 
 function NavBar() {
   return (

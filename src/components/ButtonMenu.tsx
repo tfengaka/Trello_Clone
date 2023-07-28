@@ -30,6 +30,7 @@ function ButtonMenu({ variant, title, startIcon, endIcon, subheaderTitle, sx, me
         variant={variant}
         color="inherit"
         sx={{
+          backgroundColor: openPopper && 'rgba(255, 255, 255, 0.15)',
           fontWeight: 400,
           pl: 1.25,
           py: '3px',

@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { AuthLayout, WorkspaceLayout } from '~/layout';
 import { BoardPage } from '~/pages/Workspace';
+import CardModal from '~/pages/Workspace/CardModal';
 
 const router = createBrowserRouter([
   {
@@ -12,16 +13,21 @@ const router = createBrowserRouter([
     element: <WorkspaceLayout />,
     children: [
       {
-        path: '/u/:username/boards',
+        path: 'u/:username/boards',
         element: <div>BOARD LIST</div>,
       },
       {
-        path: '/b/:id/:slug',
+        path: 'b/:id/:slug',
         element: <BoardPage />,
+      },
+      {
+        path: 'c/:id/:slug',
+        element: <CardModal />,
       },
     ],
   },
 ]);
 
 const Router = () => <RouterProvider router={router} />;
+
 export default Router;

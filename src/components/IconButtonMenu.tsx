@@ -25,8 +25,7 @@ function IconButtonMenu({ icon, subheaderTitle, sx, menuSx, children }: Props) {
       <IconButton
         sx={{
           borderRadius: '4px',
-          backgroundColor: (theme) =>
-            openPopper ? (theme.palette.mode === 'light' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.1)') : 'transparent',
+          backgroundColor: openPopper ? 'rgba(255,255,255,0.1)' : 'transparent',
           ...sx,
         }}
         color="inherit"

@@ -1,21 +1,20 @@
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import { Box, ListItemButton, Stack, Typography } from '@mui/material';
 import SvgIcon from '@mui/material/SvgIcon';
-import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 
 import UserGroupIcon from '~/assets/UserGroupIcon';
 import ButtonMenu from '~/components/ButtonMenu';
+import { capitalizeFirstLetter } from '~/utils/formatter';
 
 const Options = [
   {
-    label: 'Private',
     value: 'private',
     subtitle: 'Only board members can see and edit this board.',
     icon: <LockOutlinedIcon color="error" sx={{ width: '16px', height: '16px' }} />,
   },
   {
-    label: 'Workspace',
     value: 'workspace',
     subtitle: 'All members of the WorkSpace Workspace can see and edit this board.',
     icon: (
@@ -25,17 +24,20 @@ const Options = [
     ),
   },
   {
-    label: 'Public',
     value: 'public',
     subtitle: 'Anyone on the internet can see this board. Only board members can edit.',
     icon: <PublicOutlinedIcon sx={{ width: '16px', height: '16px', color: '#61BD4F' }} />,
   },
 ];
 
-function BoardVisible() {
+interface Props {
+  visible: 'private' | 'public' | 'workspace';
+}
+
+function BoardVisible({ visible }: Props) {
   return (
     <ButtonMenu
-      title="Workspace visible"
+      title={`${capitalizeFirstLetter(visible)} visible`}
       startIcon={
         <SvgIcon
           sx={{
@@ -55,7 +57,7 @@ function BoardVisible() {
     >
       {Options.map((option) => (
         <ListItemButton
-          key={option.label}
+          key={option.value}
           sx={{
             color: (theme) => theme.palette.text.secondary,
             '&:hover': {},
@@ -65,10 +67,10 @@ function BoardVisible() {
             <Stack direction="row" alignItems="center" spacing={0.5} mb={0.5}>
               <Box sx={{ display: 'inline-flex', alignItems: 'center' }}>{option.icon}</Box>
               <Typography fontSize={14} fontWeight={500} lineHeight="20px">
-                {option.label}
+                {capitalizeFirstLetter(option.value)}
               </Typography>
 
-              {option.value === 'workspace' && (
+              {option.value === visible && (
                 <CheckRoundedIcon color="inherit" sx={{ width: '20px', height: '20px', pb: '4px' }} />
               )}
             </Stack>

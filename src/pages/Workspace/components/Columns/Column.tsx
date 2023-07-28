@@ -1,49 +1,21 @@
-import { Button, IconButton, SvgIcon, alpha, styled } from '@mui/material';
-
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 import TemplateBoardIcon from '~/assets/TemplateBoardIcon';
 import TargetInput from '~/components/TargetInput';
-import LinkCard from '../Cards';
+import Card from '../Cards';
 import ColumnActions from './ColumnActions';
+import { ColumnBody, ColumnWrapper } from '~/theme/styled';
 
-const ColumnWrapper = styled(Box)(() => ({
-  display: 'inline-block',
-  height: '100%',
-  margin: '0 6px',
-  scrollMargin: '8px',
-  verticalAlign: 'top',
-  whiteSpace: 'nowrap',
-  width: '272px',
-}));
+interface Props {
+  data: List;
+}
 
-const ColumnBody = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flex: '1 1 auto',
-  flexDirection: 'column',
-  gap: '8px',
-  margin: '0 4px',
-  padding: '1px 4px 1px',
-  overflowX: 'hidden',
-  overflowY: 'auto',
-  '&::-webkit-scrollbar': {
-    width: '8px',
-    height: '8px',
-  },
-  '&::-webkit-scrollbar-track': {
-    background: theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.07)' : 'rgba(255,255,255,0.07)',
-    borderRadius: '8px',
-  },
-  '&::-webkit-scrollbar-thumb': {
-    cursor: 'pointer',
-    background: alpha(theme.palette.text.secondary, 0.3),
-    borderRadius: '8px',
-  },
-}));
-
-function Column() {
+function Column({ data }: Props) {
   return (
     <ColumnWrapper>
       <Stack
@@ -70,7 +42,7 @@ function Column() {
           }}
         >
           <TargetInput
-            defaultValue="Title"
+            defaultValue={data.title}
             sx={{
               '& .MuiOutlinedInput-input': {
                 fontSize: '14px',
@@ -86,9 +58,7 @@ function Column() {
 
         {/* Cards */}
         <ColumnBody>
-          <LinkCard />
-          <LinkCard />
-          <LinkCard />
+          {data.cards.length > 0 && data.cards.map((card) => <Card key={card._id} cardData={card} />)}
         </ColumnBody>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={0.5} pl={1} py={1} pr={0.5}>

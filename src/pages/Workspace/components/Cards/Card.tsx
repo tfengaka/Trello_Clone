@@ -1,33 +1,17 @@
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import ModeOutlinedIcon from '@mui/icons-material/ModeOutlined';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 
-import { Box, IconButton, Typography, styled } from '@mui/material';
-import MuiCard from '@mui/material/Card';
+import { CardWrapper } from '~/theme/styled';
 import Badges from './Badges';
 import Label from './Label';
 
-const CardWrapper = styled(MuiCard)(({ theme }) => ({
-  display: 'block',
-  position: 'relative',
-  maxWidth: '300px',
-  minHeight: '25px',
-  scrollMargin: '8px',
-  flexShrink: 0,
-  borderRadius: '6px',
-  background: theme.palette.mode === 'light' ? '#fff' : theme.palette.background.paper,
-  color: theme.palette.text.secondary,
-  textDecoration: 'none',
-  boxShadow: theme.shadows[1],
-  cursor: 'pointer',
-  zIndex: 1,
-  transition: theme.transitions.create(['border-color', 'background-color']),
-  '&:hover': {
-    background: theme.palette.mode === 'light' ? '#dee0e3' : '#31393e',
-    borderBottomColor: theme.palette.mode === 'light' ? '#091e4224' : '#A6C5E229',
-    transition: theme.transitions.create(['border-color', 'background-color']),
-  },
-}));
+interface Props {
+  cardData: Card;
+}
 
-function Card() {
+function Card({ cardData }: Props) {
   return (
     <CardWrapper>
       {/* Card Actions */}
@@ -41,8 +25,9 @@ function Card() {
             theme.palette.mode === 'light' ? 'rgba(34, 39, 43, 0.05)' : 'rgba(255, 255, 255, 0.05)',
           borderRadius: '4px',
           color: 'inherit',
-          padding: '8px',
+          padding: '6px',
           opacity: 0.8,
+          visibility: 'hidden',
           zIndex: 40,
         }}
         onClick={(e) => {
@@ -50,16 +35,14 @@ function Card() {
           console.log('card actions');
         }}
       >
-        <EditOutlinedIcon sx={{ width: '16px', height: '16px' }} />
+        <ModeOutlinedIcon fontSize="small" />
       </IconButton>
 
-      <Box>
-        <img
-          src="https://trello.com/1/cards/64b19b8a948a0c639c14d383/attachments/64b19b8a948a0c639c14d62a/previews/64b19b8a948a0c639c14d62b/download/giphy.gif"
-          alt=""
-          style={{ width: '100%', height: '100', objectFit: 'cover' }}
-        />
-      </Box>
+      {cardData.coverImage && (
+        <Box>
+          <img src={cardData.coverImage} alt="" style={{ width: '100%', height: '100', objectFit: 'cover' }} />
+        </Box>
+      )}
 
       <Box
         sx={{
@@ -93,7 +76,7 @@ function Card() {
             overflow: 'hidden',
           }}
         >
-          {`Trello Tip: This is where assigned tasks live so that your team can see who's working on what and when it's due.`}
+          {cardData.title}
         </Typography>
 
         <Badges />

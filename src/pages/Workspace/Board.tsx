@@ -2,6 +2,8 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { BoardContent, BoardHeader } from './components/Boards/';
 
+import { mockData } from '~/data/mock';
+
 function Board() {
   return (
     <Stack
@@ -15,7 +17,7 @@ function Board() {
         backgroundSize: 'contain',
       }}
     >
-      <BoardHeader />
+      <BoardHeader board={mockData.board} />
       <Box
         sx={{
           flexGrow: 1,
@@ -24,7 +26,7 @@ function Board() {
           position: 'relative',
         }}
       >
-        <BoardContent />
+        <BoardContent data={{ listData: mockData.board.listData, listOrderIds: mockData.board.listOrderIds }} />
       </Box>
     </Stack>
   );
