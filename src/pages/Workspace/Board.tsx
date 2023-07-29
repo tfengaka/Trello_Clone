@@ -22,7 +22,7 @@ function Board() {
         sx={{
           flexGrow: 1,
           width: '100%',
-          mt: '12px',
+          my: '8px',
           position: 'relative',
         }}
       >

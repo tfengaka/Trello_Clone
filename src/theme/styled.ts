@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Popover from '@mui/material/Popover';
 import Card from '@mui/material/Card';
+import Stack from '@mui/material/Stack';
 
 export const AppBarStyled = styled(AppBar)(({ theme }) => ({
   backgroundImage: 'none',
@@ -134,7 +135,18 @@ export const ColumnWrapper = styled(Box)(() => ({
   width: '272px',
 }));
 
-export const ColumnBody = styled(Box)(({ theme }) => ({
+export const ColumnStyled = styled(Stack)(({ theme }) => ({
+  width: '100%',
+  maxHeight: '100%',
+  background: theme.palette.mode === 'light' ? theme.palette.background.paper : theme.palette.background.default,
+  color: theme.palette.text.secondary,
+  boxShadow: theme.shadows[1],
+  borderRadius: '12px',
+  overflow: 'hidden',
+  cursor: 'pointer',
+}));
+
+export const ColumnBodyStyled = styled(Box)(({ theme }) => ({
   display: 'flex',
   flex: '1 1 auto',
   flexDirection: 'column',

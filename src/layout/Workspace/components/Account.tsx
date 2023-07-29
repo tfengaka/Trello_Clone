@@ -18,11 +18,26 @@ function Account() {
   return (
     <Box>
       <Tooltip title="Account">
-        <IconButton onClick={(e) => setOpenPopper(e.currentTarget)}>
+        <IconButton
+          onClick={(e) => setOpenPopper(e.currentTarget)}
+          sx={{
+            width: 32,
+            height: 32,
+            '&:hover': {
+              backgroundColor: 'rgba(255,255,255,0.1)',
+            },
+          }}
+        >
           <Avatar
-            style={{ width: 24, height: 24, borderRadius: '50%' }}
+            sx={{
+              width: '100%',
+              height: '100%',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(255,255,255,0.1)',
+              border: (theme) => `1px solid ${theme.palette.mode === 'light' ? '#ebecf0' : '#B6C2CF'}`,
+            }}
             alt="avatar"
-            src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/355682788_1050384169674738_8794802630622808023_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6UVWZ_VQmOMAX_hjUqc&_nc_oc=AQmif15HM7QdgWNMOQnGuQSMjZE69MG0aIApXb-FHfhbDSNJyyJCgMr7l4g82jq9Bp4&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfATndvpzWdqLO2gmzKSCEFtH_FgWbgedgfCKGk2d-qYAg&oe=64BC92D0"
+            src="/avatar.png"
           />
         </IconButton>
       </Tooltip>
@@ -56,10 +71,7 @@ function Account() {
               borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
             }}
           >
-            <Avatar
-              sx={{ width: 40, height: 40 }}
-              src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/355682788_1050384169674738_8794802630622808023_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6UVWZ_VQmOMAX_hjUqc&_nc_oc=AQmif15HM7QdgWNMOQnGuQSMjZE69MG0aIApXb-FHfhbDSNJyyJCgMr7l4g82jq9Bp4&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfATndvpzWdqLO2gmzKSCEFtH_FgWbgedgfCKGk2d-qYAg&oe=64BC92D0"
-            />
+            <Avatar sx={{ width: 40, height: 40 }} src="/avatar.png" />
             <Stack>
               <Typography
                 fontSize={14}

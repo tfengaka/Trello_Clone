@@ -7,8 +7,8 @@ function ColumnActions() {
     <Box
       sx={{
         position: 'absolute',
-        top: '7px',
-        right: '6px',
+        top: '8px',
+        right: '8px',
         zIndex: 0,
       }}
     >

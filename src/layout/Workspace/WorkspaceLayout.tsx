@@ -6,7 +6,11 @@ import NavBar from './components/NavBar';
 
 function WorkspaceLayout() {
   return (
-    <Container sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }} disableGutters maxWidth={false}>
+    <Container
+      sx={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
+      disableGutters
+      maxWidth={false}
+    >
       <NavBar />
       <Stack
         direction="row"
