@@ -28,6 +28,16 @@ interface Attachment {
   createBy: string;
 }
 
+interface BoardContent {
+  listOrderIds: Array<string>;
+  listData: Array<List>;
+}
+
+interface ListContent {
+  cardOrderIds: Array<string>;
+  cards: Array<Card>;
+}
+
 interface BoardData {
   _id: string;
   title: string;
@@ -36,17 +46,10 @@ interface BoardData {
   memberIds: Array<string>;
 }
 
-interface BoardContent {
-  listOrderIds: Array<string>;
-  listData: Array<List>;
-}
-
-interface List {
+interface List extends ListContent {
   _id: string;
   title: string;
   boardId: string;
-  cardOrderIds: Array<string>;
-  cards: Array<Card>;
 }
 
 interface Card {
@@ -63,3 +66,6 @@ interface Card {
 }
 
 type Board = BoardData & BoardContent;
+
+type UniqueIdentifier = string | number;
+type ActiveItem = List | Card;

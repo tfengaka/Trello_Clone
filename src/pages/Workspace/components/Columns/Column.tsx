@@ -1,29 +1,27 @@
-import { ColumnBodyStyled, ColumnStyled, ColumnWrapper } from '~/theme/styled';
-import ColumnFooter from './ColumnFooter';
-import ColumnHeader from './ColumnHeader';
-import Card from '../Cards';
-
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { ColumnStyled, ColumnWrapper } from '~/theme/styled';
+import ColumnFooter from './ColumnFooter';
+import ColumnHeader from './ColumnHeader';
+import ColumnBody from './ColumnBody';
 
 interface Props {
   data: List;
 }
 
 function Column({ data }: Props) {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: data._id, data });
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: data._id, data });
 
   const dndListStyle = {
     transform: CSS.Translate.toString(transform),
     transition,
+    opacity: isDragging ? 0.5 : 'inherit',
   };
   return (
-    <ColumnWrapper>
-      <ColumnStyled ref={setNodeRef} style={dndListStyle} {...attributes} {...listeners}>
+    <ColumnWrapper ref={setNodeRef} style={dndListStyle} {...attributes}>
+      <ColumnStyled {...listeners}>
         <ColumnHeader title={data.title} />
-        <ColumnBodyStyled>
-          {data.cards.length > 0 && data.cards.map((card) => <Card key={card._id} cardData={card} />)}
-        </ColumnBodyStyled>
+        <ColumnBody data={{ cardOrderIds: data.cardOrderIds, cards: data.cards }} />
         <ColumnFooter />
       </ColumnStyled>
     </ColumnWrapper>

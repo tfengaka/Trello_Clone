@@ -1,6 +1,4 @@
-import AppsRoundedIcon from '@mui/icons-material/AppsRounded';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -31,16 +29,6 @@ function NavBar() {
                 : 'unset',
           }}
         >
-          <IconButton
-            color="inherit"
-            sx={{
-              borderRadius: 1,
-              p: 0.5,
-              mr: 1,
-            }}
-          >
-            <AppsRoundedIcon fontSize="medium" />
-          </IconButton>
           <Button
             LinkComponent={RouterLink}
             variant="text"
@@ -50,7 +38,6 @@ function NavBar() {
               position: 'relative',
               height: '32px',
               width: '96px',
-              px: 1,
               mr: 1,
               '&:hover::before': {
                 backgroundImage: `url(${'/logo-animated.gif'})`,

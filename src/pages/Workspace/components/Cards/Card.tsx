@@ -3,17 +3,28 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+
 import { CardWrapper } from '~/theme/styled';
 import Badges from './Badges';
 import Label from './Label';
 
 interface Props {
-  cardData: Card;
+  data: Card;
 }
 
-function Card({ cardData }: Props) {
+function Card({ data }: Props) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: data._id, data });
+
+  const dndCardStyle = {
+    transform: CSS.Translate.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 'inherit',
+  };
+
   return (
-    <CardWrapper>
+    <CardWrapper ref={setNodeRef} style={dndCardStyle} {...attributes} {...listeners}>
       {/* Card Actions */}
       <IconButton
         id="card-btn-edit"
@@ -38,9 +49,9 @@ function Card({ cardData }: Props) {
         <ModeOutlinedIcon fontSize="small" />
       </IconButton>
 
-      {cardData.coverImage && (
+      {data.coverImage && (
         <Box>
-          <img src={cardData.coverImage} alt="" style={{ width: '100%', height: '100', objectFit: 'cover' }} />
+          <img src={data.coverImage} alt="" style={{ width: '100%', height: '100', objectFit: 'cover' }} />
         </Box>
       )}
 
@@ -76,7 +87,7 @@ function Card({ cardData }: Props) {
             overflow: 'hidden',
           }}
         >
-          {cardData.title}
+          {data.title}
         </Typography>
 
         <Badges />

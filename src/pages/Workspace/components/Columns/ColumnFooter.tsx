@@ -11,7 +11,6 @@ function ColumnFooter() {
     <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={0.5} pl={1} py={1} pr={0.5}>
       <Button
         fullWidth
-        size="small"
         startIcon={<AddRoundedIcon fontSize="small" />}
         sx={{
           fontSize: 14,
@@ -28,12 +27,7 @@ function ColumnFooter() {
         Add a card
       </Button>
       <IconButton sx={{ padding: '6px', borderRadius: '6px' }} color="inherit">
-        <SvgIcon
-          sx={{
-            width: '16px',
-            height: '16px',
-          }}
-        >
+        <SvgIcon fontSize="small">
           <TemplateBoardIcon />
         </SvgIcon>
       </IconButton>

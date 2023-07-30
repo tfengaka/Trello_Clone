@@ -83,12 +83,24 @@ export const TargetInputStyled = styled(OutlinedInput)(({ theme }) => ({
   },
 }));
 
+export const BoardHeaderWrapper = styled(Box)(() => ({
+  width: '100%',
+  height: 'auto',
+  display: 'flex',
+  flexWrap: 'nowrap',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  borderBottom: `1px solid ${alpha('rgba(255, 255, 255)', 0.12)}`,
+  backgroundColor: 'rgba(0, 0, 0, 0.25)',
+  backdropFilter: 'blur(4px)',
+  padding: '8px 10px 10px 8px',
+}));
+
 export const BoardContentWrapper = styled(Box)(() => ({
   position: 'absolute',
   inset: 0,
-  mb: '8px',
-  ml: '12px',
-  paddingBottom: '8px',
+  marginBottom: '8px',
+  paddingLeft: '6px',
   overflowX: 'auto',
   overflowY: 'hidden',
   userSelect: 'none',
@@ -112,19 +124,6 @@ export const BoardContentWrapper = styled(Box)(() => ({
   },
 }));
 
-export const BoardHeaderWrapper = styled(Box)(() => ({
-  width: '100%',
-  height: 'auto',
-  display: 'flex',
-  flexWrap: 'nowrap',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  borderBottom: `1px solid ${alpha('rgba(255, 255, 255)', 0.12)}`,
-  backgroundColor: 'rgba(0, 0, 0, 0.25)',
-  backdropFilter: 'blur(4px)',
-  padding: '8px 10px 10px 16px',
-}));
-
 export const ColumnWrapper = styled(Box)(() => ({
   display: 'inline-block',
   height: '100%',
@@ -142,13 +141,21 @@ export const ColumnStyled = styled(Stack)(({ theme }) => ({
   color: theme.palette.text.secondary,
   boxShadow: theme.shadows[1],
   borderRadius: '12px',
-  overflow: 'hidden',
   cursor: 'pointer',
+}));
+
+export const ColumnHeaderStyled = styled(Box)(() => ({
+  flex: '0 0 auto',
+  width: '100%',
+  padding: '8px',
+  paddingRight: '36px',
+  backgroundColor: 'inherit',
+  position: 'relative',
+  borderRadius: '12px',
 }));
 
 export const ColumnBodyStyled = styled(Box)(({ theme }) => ({
   display: 'flex',
-  flex: '1 1 auto',
   flexDirection: 'column',
   gap: '8px',
   margin: '0 4px',
@@ -175,20 +182,17 @@ export const CardWrapper = styled(Card)(({ theme }) => ({
   position: 'relative',
   maxWidth: '300px',
   minHeight: '25px',
-  scrollMargin: '8px',
   flexShrink: 0,
+  flexGrow: 0,
   borderRadius: '6px',
   background: theme.palette.mode === 'light' ? '#fff' : theme.palette.background.paper,
   color: theme.palette.text.secondary,
-  textDecoration: 'none',
   boxShadow: theme.shadows[1],
+  transformOrigin: '0 0',
   cursor: 'pointer',
-  zIndex: 1,
-  transition: theme.transitions.create(['border-color', 'background-color']),
   '&:hover': {
     background: theme.palette.mode === 'light' ? '#f2f3f5' : '#2b3236',
     borderBottomColor: theme.palette.mode === 'light' ? '#091e4224' : '#A6C5E229',
-    transition: theme.transitions.create(['border-color', 'background-color']),
     '& > #card-btn-edit': {
       visibility: 'visible',
     },

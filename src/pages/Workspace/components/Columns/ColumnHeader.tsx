@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import Box from '@mui/material/Box';
+import { ColumnHeaderStyled } from '~/theme/styled';
 import ColumnActions from './ColumnActions';
 
 interface Props {
@@ -8,16 +8,7 @@ interface Props {
 
 function ColumnHeader({ title }: Props) {
   return (
-    <Box
-      sx={{
-        flex: '0 0 auto',
-        width: '100%',
-        padding: '8px',
-        paddingRight: '36px',
-        backgroundColor: 'inherit',
-        position: 'relative',
-      }}
-    >
+    <ColumnHeaderStyled>
       {/* <TargetInput
         defaultValue={title}
         sx={{
@@ -43,7 +34,7 @@ function ColumnHeader({ title }: Props) {
       </Typography>
       {/* actions */}
       <ColumnActions />
-    </Box>
+    </ColumnHeaderStyled>
   );
 }
 
