@@ -1,16 +1,19 @@
 import {
   DndContext,
   DragEndEvent,
+  DragOverEvent,
   DragOverlay,
   DragStartEvent,
   DropAnimation,
   MouseSensor,
   TouchSensor,
+  closestCorners,
   defaultDropAnimationSideEffects,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
 import { SortableContext, arrayMove, horizontalListSortingStrategy } from '@dnd-kit/sortable';
+import { cloneDeep } from 'lodash';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -60,20 +63,65 @@ function BoardContent({ data: { listData, listOrderIds } }: Props) {
     setListOrdered(mapOrderList(listData, listOrderIds, '_id'));
   }, [listData, listOrderIds]);
 
+  const findListByCardId = (cardId: string) => listOrdered.find((e) => e.cards.map((c) => c._id)?.includes(cardId));
+
   const handleDragStart = ({ active }: DragStartEvent) => {
     setActiveId(active.id);
     setActiveItem(active?.data.current);
   };
 
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
+  const handleDragOver = ({ active, over }: DragOverEvent) => {
+    if (!over || !activeId || !activeItem.listId) return;
+
+    const activeList = findListByCardId(active.id as string);
+    const overList = findListByCardId(over.id as string);
+
+    if (!activeList || !overList) return;
+
+    if (activeList._id !== overList._id) {
+      setListOrdered((prev) => {
+        const overCardIndex = overList.cards.findIndex((c) => c._id === over.id);
+
+        const isBelowOverItem =
+          active.rect.current.translated && active.rect.current.translated.top > over.rect.top + over.rect.height;
+
+        const modifier = isBelowOverItem ? 1 : 0;
+
+        const newCardIndex = overCardIndex >= 0 ? overCardIndex + modifier : overList.cards.length + 1;
+
+        const cloneLists = cloneDeep(prev);
+        const newActiveList = cloneLists.find((c) => c._id === activeList._id);
+        const newOverList = cloneLists.find((c) => c._id === overList._id);
+
+        if (newActiveList) {
+          newActiveList.cards = newActiveList.cards.filter((c) => c._id !== active.id);
+          newActiveList.cardOrderIds = newActiveList.cards.map((c) => c._id);
+        }
+
+        if (newOverList) {
+          newOverList.cards = newOverList.cards.filter((c) => c._id !== active.id);
+          newOverList.cards = newOverList.cards.toSpliced(newCardIndex, 0, active.data.current as Card);
+          newOverList.cardOrderIds = newOverList.cards.map((c) => c._id);
+        }
+
+        return cloneLists;
+      });
+    }
+  };
+
+  const handleDragEnd = ({ active, over }: DragEndEvent) => {
     if (!over) {
       setActiveId(null);
       setActiveItem(null);
       return;
     }
+
+    if (active.data.current?.listId) {
+      console.log('Drag Card is active');
+      return;
+    }
+
     if (active.id !== over.id) {
-      console.log('Drag event');
       const oldIndex = listOrderIds.indexOf(active.id.toString());
       const newIndex = listOrderIds.indexOf(over.id.toString());
 
@@ -91,7 +139,13 @@ function BoardContent({ data: { listData, listOrderIds } }: Props) {
   };
 
   return (
-    <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCorners}
+      onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
+      onDragEnd={handleDragEnd}
+    >
       <BoardContentWrapper>
         <SortableContext items={listOrderIds} strategy={horizontalListSortingStrategy}>
           {listOrdered.length && listOrdered.map((list) => <Column key={list._id} data={list} />)}
@@ -120,14 +174,13 @@ function BoardContent({ data: { listData, listOrderIds } }: Props) {
             Add another list
           </Button>
         </SortableContext>
-        {createPortal(
-          <DragOverlay dropAnimation={dropAnimation}>
-            {!activeId && null}
-            {activeId && (activeItem.listId ? <Card data={activeItem} /> : <Column data={activeItem} />)}
-          </DragOverlay>,
-          document.body
-        )}
       </BoardContentWrapper>
+      {createPortal(
+        <DragOverlay dropAnimation={dropAnimation}>
+          {activeId ? activeItem.listId ? <Card data={activeItem} /> : <Column data={activeItem} /> : null}
+        </DragOverlay>,
+        document.body
+      )}
     </DndContext>
   );
 }

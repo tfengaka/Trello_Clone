@@ -160,6 +160,7 @@ export const ColumnBodyStyled = styled(Box)(({ theme }) => ({
   gap: '8px',
   margin: '0 4px',
   padding: '1px 4px 1px',
+  minHeight: '20px',
   overflowX: 'hidden',
   overflowY: 'auto',
   '&::-webkit-scrollbar': {
