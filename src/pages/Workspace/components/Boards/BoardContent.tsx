@@ -87,7 +87,7 @@ function BoardContent({ data: { listData, listOrderIds } }: Props) {
 
         const modifier = isBelowOverItem ? 1 : 0;
 
-        const newCardIndex = overCardIndex >= 0 ? overCardIndex + modifier : overList.cards.length + 1;
+        const newIndex = overCardIndex >= 0 ? overCardIndex + modifier : overList.cards.length + 1;
 
         const cloneLists = cloneDeep(prev);
         const newActiveList = cloneLists.find((c) => c._id === activeList._id);
@@ -100,7 +100,7 @@ function BoardContent({ data: { listData, listOrderIds } }: Props) {
 
         if (newOverList) {
           newOverList.cards = newOverList.cards.filter((c) => c._id !== active.id);
-          newOverList.cards = newOverList.cards.toSpliced(newCardIndex, 0, active.data.current as Card);
+          newOverList.cards = newOverList.cards.toSpliced(newIndex, 0, active.data.current as Card);
           newOverList.cardOrderIds = newOverList.cards.map((c) => c._id);
         }
 
