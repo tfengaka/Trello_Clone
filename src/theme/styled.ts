@@ -199,3 +199,33 @@ export const CardWrapper = styled(Card)(({ theme }) => ({
     },
   },
 }));
+
+export const AuthWrapper = styled(Box)(() => ({
+  minHeight: '100vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'relative',
+  inset: 0,
+  overflow: 'hidden',
+  '&:before': {
+    content: '""',
+    position: 'absolute',
+    inset: '-5px',
+    zIndex: -1,
+    backgroundImage: `url(${'/background.svg'})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+  },
+}));
+
+export const AuthContentWrapper = styled(Box)(({ theme }) => ({
+  width: '100%',
+  maxWidth: '600px',
+  borderRadius: '6px',
+  backgroundColor: theme.palette.background.default,
+  padding: '35px 70px',
+  zIndex: 100,
+  backdropFilter: 'blur(25px)',
+}));

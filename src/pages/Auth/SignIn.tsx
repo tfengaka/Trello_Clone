@@ -1,5 +1,11 @@
+import { Box, OutlinedInput } from '@mui/material';
+
 function SignIn() {
-  return <div>SignIn</div>;
+  return (
+    <Box>
+      <OutlinedInput />
+    </Box>
+  );
 }
 
 export default SignIn;

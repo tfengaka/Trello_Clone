@@ -1,5 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
 import { AuthLayout, WorkspaceLayout } from '~/layout';
+import { SignIn, SignUp } from '~/pages/Auth';
 import { BoardPage } from '~/pages/Workspace';
 import CardModal from '~/pages/Workspace/CardModal';
 
@@ -7,6 +9,16 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <AuthLayout />,
+    children: [
+      {
+        path: 'sign-in',
+        element: <SignIn />,
+      },
+      {
+        path: 'sign-up',
+        element: <SignUp />,
+      },
+    ],
   },
   {
     path: '/',
